@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/bun.lock": true,
+        "**/.gitignore": true,
+        "**/skills-lock.json": true,
+        "**/turbo.json": true,
+        "**.agents": true,
+        "**/.turbo": true,
+        "**/web/vite.config.ts": true,
+        "**/web/tsconfig.json": true,
+        "**/web/.react-router": true,
+        "**/web/README.md": true
+    }
+}

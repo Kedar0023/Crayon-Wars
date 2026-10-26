@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
@@ -19,4 +18,48 @@
 
 body {
     @apply bg-sky-bg font-sans text-ink antialiased;
+}
+
+.field-scrollbar {
+    scrollbar-color: rgb(71 85 105 / 45%) transparent;
+    scrollbar-width: thin;
+}
+
+.field-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.field-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.field-scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-color: rgb(71 85 105 / 45%);
+    background-clip: padding-box;
+}
+
+.field-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(51 65 85 / 70%);
+}
+
+
+@keyframes winner-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes winner-pulse {
+  0%, 100% { r: 24; opacity: 0.4; }
+  50% { r: 26; opacity: 0.15; }
+}
+
+@keyframes winner-shimmer {
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(76px); }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(-10deg) scale(1.1); }
 }

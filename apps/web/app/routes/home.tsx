@@ -17,10 +17,9 @@ export default function Home() {
 
     return (
         <Shell>
-            <div className="mx-auto grid w-full max-w-5xl gap-6 px-4 py-4 md:px-6 lg:grid-cols-[minmax(0,37.5rem)_minmax(0,22rem)] lg:justify-center lg:gap-8 lg:py-8">
+            <div className="mx-auto grid w-full max-w-5xl gap-6 px-4 py-4 md:px-6 lg:grid-cols-[37.5rem_minmax(0,1fr)] lg:justify-center lg:gap-8 lg:py-8 xl:grid-cols-[37.5rem_26rem]">
                 <section className="flex flex-col gap-3">
                     <WordHeader />
-                    {/* Add your perfect-freehand component as the child ↓ */}
                     <CanvasCard />
                     <CanvasActions />
                 </section>

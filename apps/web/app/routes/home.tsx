@@ -2,7 +2,7 @@ import type { Route } from './+types/home'
 import { Shell } from '@/components/layout'
 import { CanvasActions } from '../../components/canvas/CanvasActions'
 import { CanvasCard } from '../../components/canvas/CanvasCard'
-import { FieldPanel } from '../../features/game/FieldPanel'
+import { GameSidebar } from '../../components/GameSidebar'
 import { useRoundTimer } from '../../features/game/useRoundTimer'
 import { WordHeader } from '../../features/game/WordHeader'
 
@@ -23,7 +23,7 @@ export default function Home() {
                     <CanvasCard />
                     <CanvasActions />
                 </section>
-                <FieldPanel />
+                <GameSidebar />
             </div>
         </Shell>
     )

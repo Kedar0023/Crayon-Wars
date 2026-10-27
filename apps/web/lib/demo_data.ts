@@ -25,6 +25,7 @@ export const llmCards = [
 
 
 import { PlayerInfoCard, type PlayerInfoCardProps } from '@/components/ui/PlayerCard'
+import type { ChatMessage } from '@/components/ui/ChatBubble'
 
 export const DEMO_PLAYERS: PlayerInfoCardProps[] = [
     // one per status
@@ -47,4 +48,33 @@ export const DEMO_PLAYERS: PlayerInfoCardProps[] = [
     // edge cases
     { name: 'Averyveryverylongplayername', tag: '#L00001', avatar: '71', score: 1234567, winStreak: 12, status: 'choosing', ping: 80, isHost: true, isYou: true, isGuest: false, streakFrozen: false, isNewBest: false, isWinner: false },
     { name: 'Newbie', tag: 'Z99999', avatar: '90', score: 0, winStreak: 0, status: 'ready', ping: 50, isHost: false, isYou: false, isGuest: false, streakFrozen: false, isNewBest: false, isWinner: false },
+]
+
+
+
+export const DEMO_MSG: ChatMessage[] = [
+    { id: 1, avatar: '00', sender: 'Jennie', text: 'gl everyone', isSystem: false },
+    { id: 2, avatar: '11', sender: 'Rosé', text: 'this is so hard lol', isSystem: false },
+    { id: 3, avatar: '00', sender: 'System', text: 'jisoo set a new best!', isSystem: true },
+    { id: 4, avatar: '31', sender: 'Lisa', text: 'wait i think i know this one', isSystem: false },
+    { id: 5, avatar: '00', sender: 'Jennie', text: 'too easy', isSystem: false },
+    { id: 6, avatar: '22', sender: 'Jisoo', text: 'no way!! lets gooo', isSystem: false },
+    { id: 7, avatar: '31', sender: 'Lisa', text: 'the shape is definitely a sunflower', isSystem: false },
+    { id: 8, avatar: '11', sender: 'Rosé', text: 'i was about to guess that too', isSystem: false },
+    { id: 9, avatar: '00', sender: 'System', text: 'lisa is drawing the next round', isSystem: true },
+    { id: 10, avatar: '00', sender: 'Jennie', text: 'omg this one is making me dizzy', isSystem: false },
+    { id: 11, avatar: '22', sender: 'Jisoo', text: 'same, but i am still trying', isSystem: false },
+    { id: 12, avatar: '31', sender: 'Lisa', text: 'the petals look like they are floating', isSystem: false },
+    { id: 13, avatar: '00', sender: 'Jennie', text: 'i swear the last prompt was easier', isSystem: false },
+    { id: 14, avatar: '11', sender: 'Rosé', text: 'nah this is pure chaos', isSystem: false },
+    { id: 15, avatar: '22', sender: 'Jisoo', text: 'fine, i will just keep scribbling until it works', isSystem: false },
+    { id: 16, avatar: '31', sender: 'Lisa', text: 'the color palette is giving me flashbacks', isSystem: false },
+    { id: 17, avatar: '00', sender: 'Jennie', text: 'bro why is every object in this game a weird blob', isSystem: false },
+    { id: 18, avatar: '11', sender: 'Rosé', text: 'because the prompt is cursed', isSystem: false },
+    { id: 19, avatar: '22', sender: 'Jisoo', text: 'i am not drawing a banana again', isSystem: false },
+    { id: 20, avatar: '31', sender: 'Lisa', text: 'you definitely drew a banana last round', isSystem: false },
+    { id: 21, avatar: '00', sender: 'Jennie', text: 'that was a very confident banana', isSystem: false },
+    { id: 22, avatar: '11', sender: 'Rosé', text: 'it looked like a moon with anxiety', isSystem: false },
+    { id: 23, avatar: '00', sender: 'System', text: 'round 4 starting in 5 seconds', isSystem: true },
+    { id: 24, avatar: '22', sender: 'Jisoo', text: 'please just give me one normal object this time', isSystem: false },
 ]

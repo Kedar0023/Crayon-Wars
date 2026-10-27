@@ -4,6 +4,7 @@ import { AVATAR_COLORS, AVATAR_FACES, createAvatarCode, getAvatar, type AvatarCo
 import { AvatarPicker } from "../../components/landing/AvatarPicker";
 import { Header } from "../../components/landing/Header";
 import { PlayCard } from "../../components/landing/PlayCard";
+import { CreateLobbyDialog, type LobbyConfig } from "../../components/landing/CreateLobby";
 import { SignInModal } from "../../components/landing/SignInModal";
 import { DEFAULT_PROFILE, PAGE_BACKGROUNDS, type JoinResult, type Profile } from "../../components/landing/types";
 
@@ -85,15 +86,16 @@ export default function LandingPage() {
   const [profile, patchProfile] = useProfile();
   const [signedIn, setSignedIn] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [open, setOpen] = useState(false);
   const attempts = useRef(0);
   const page = PAGE_BACKGROUNDS[getAvatar(profile.avatar).colorIndex];
 
-  const enter = (room: string, extra = "") => navigate(`/lobby/${room}${extra}`, { state: { profile } });
+  const enter = (room: string, extra = "", lobbyConfig?: LobbyConfig) =>
+    navigate(`/lobby/${room}${extra}`, {
+      state: lobbyConfig ? { profile, lobbyConfig } : { profile },
+    });
 
-  const onCreateLobby = async () => {
-    await wait(700);
-    enter(randomCode());
-  };
+  const createLobby = (config: LobbyConfig) => enter(randomCode(), "", config);
 
   const onJoinRandom = async (signal: AbortSignal) => {
     await wait(2200, signal);
@@ -146,7 +148,7 @@ export default function LandingPage() {
             />
             <PlayCard
               signedIn={signedIn}
-              onCreateLobby={onCreateLobby}
+              onCreateLobby={() => setOpen(true)}
               onJoinRandom={onJoinRandom}
               onJoinCode={onJoinCode}
               onPlayAI={onPlayAI}
@@ -169,6 +171,14 @@ export default function LandingPage() {
           onDone={() => { setSignedIn(true); setShowSignIn(false); }}
         />
       )}
+      <CreateLobbyDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        onCreate={(config) => {
+          createLobby(config);
+          setOpen(false);
+        }}
+      />
     </div>
   );
 }

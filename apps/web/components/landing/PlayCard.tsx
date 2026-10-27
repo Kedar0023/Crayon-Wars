@@ -5,7 +5,7 @@ import { Button, Card, Divider, Tag } from "./primitives";
 
 type PlayCardProps = {
   signedIn: boolean;
-  onCreateLobby: () => Promise<void>;
+  onCreateLobby: () => void;
   onJoinRandom: (signal: AbortSignal) => Promise<"joined" | "none">;
   onJoinCode: (code: string) => Promise<JoinResult>;
   onPlayAI: () => void;
@@ -20,18 +20,11 @@ const CODE_ERRORS: Record<Exclude<JoinResult, "ok">, string> = {
 };
 
 export function PlayCard(props: PlayCardProps) {
-  const [creating, setCreating] = useState(false);
   const [random, setRandom] = useState<"idle" | "searching" | "none">("idle");
   const abort = useRef<AbortController | null>(null);
   const [code, setCode] = useState("");
   const [joining, setJoining] = useState(false);
   const [codeError, setCodeError] = useState<string | null>(null);
-
-  const create = async () => {
-    setCreating(true);
-    await props.onCreateLobby();
-    setCreating(false);
-  };
 
   const searchRandom = async () => {
     const controller = new AbortController();
@@ -66,7 +59,7 @@ export function PlayCard(props: PlayCardProps) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Button variant="primary" className="h-14 text-base" loading={creating} icon={<Plus className="size-5" />} onClick={create}>
+        <Button variant="primary" className="h-14 text-base" icon={<Plus className="size-5" />} onClick={props.onCreateLobby}>
           Create new lobby
         </Button>
 
@@ -84,7 +77,7 @@ export function PlayCard(props: PlayCardProps) {
             <p className="font-bold">No open lobbies right now.</p>
             <p className="mb-3 text-sm text-black/60">Start one and others can join you.</p>
             <div className="flex gap-2">
-              <Button variant="primary" className="h-10 px-4 text-sm" loading={creating} onClick={create}>Create one</Button>
+              <Button variant="primary" className="h-10 px-4 text-sm" onClick={props.onCreateLobby}>Create one</Button>
               <Button variant="ghost" className="h-10 px-4 text-sm" onClick={searchRandom}>Try again</Button>
             </div>
           </div>

@@ -12,7 +12,7 @@ export function Timer() {
         <div
             role="timer"
             aria-label={`${secondsLeft} seconds left`}
-            className="flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-2 text-sm font-bold tabular-nums shadow-sm">
+            className="doodle-scale-enter flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-2 text-sm font-bold tabular-nums shadow-sm transition-all duration-150">
             <svg viewBox="0 0 20 20" aria-hidden className="size-5 -rotate-90">
                 <circle cx="10" cy="10" r={RADIUS} fill="none" stroke="currentColor" strokeOpacity=".15" strokeWidth="2.5" />
                 <circle
@@ -25,7 +25,7 @@ export function Timer() {
                     strokeLinecap="round"
                     strokeDasharray={CIRC}
                     strokeDashoffset={CIRC * (1 - progress)}
-                    className="transition-[stroke-dashoffset] duration-1000 ease-linear"
+                    className="transition-[stroke-dashoffset] duration-1000 ease-linear motion-reduce:transition-none"
                 />
             </svg>
             {secondsLeft}s

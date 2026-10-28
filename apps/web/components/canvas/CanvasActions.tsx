@@ -10,7 +10,7 @@ export function CanvasActions() {
     const giveUp = useGameStore((s) => s.giveUp)
 
     return (
-        <div className="flex items-center justify-between">
+        <div className="doodle-bar-enter flex items-center justify-between">
             <div className="flex items-center gap-1 rounded-full bg-white/40 p-0.5">
                 <PillButton icon={<Undo2 className="size-3.5" />} label="Undo" onClick={undo} disabled={!playing || !hasStrokes} />
                 <PillButton icon={<Trash2 className="size-3.5" />} label="Clear" onClick={clear} disabled={!playing || !hasStrokes} />

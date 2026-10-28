@@ -9,12 +9,17 @@ import ChatBubble from './ui/ChatBubble'
 const TABS = ['players', 'chat'] as const
 type Tab = (typeof TABS)[number]
 
-const PlayersTab = ()=> {
+const PlayersTab = () => {
     return (
         <div className="field-scrollbar flex h-full min-h-0 flex-col gap-2 overflow-y-auto">
             <ul className="flex flex-col gap-2.5">
                 {DEMO_PLAYERS.map((player, index) => (
-                    <PlayerInfoCard key={`${player.tag}-${index}`} {...player} />
+                    <li
+                        key={`${player.tag}-${index}`}
+                        className="doodle-row-enter"
+                        style={{ animationDelay: `${Math.min(index * 45, 450)}ms` }}>
+                        <PlayerInfoCard {...player} />
+                    </li>
                 ))}
             </ul>
         </div>
@@ -22,7 +27,7 @@ const PlayersTab = ()=> {
 }
 // ----------------
 
-const ChatTab = ()=> {
+const ChatTab = () => {
     const scrollRef = useRef<HTMLDivElement>(null)
     const [messages] = useState<ChatMessage[]>(DEMO_MSG)
 
@@ -39,7 +44,14 @@ const ChatTab = ()=> {
                     <p className="text-xs text-slate-400">Say something to the field!</p>
                 </div>
             ) : (
-                messages.map((msg) => <ChatBubble key={msg.id} {...msg} />)
+                messages.map((msg, index) => (
+                    <div
+                        key={msg.id}
+                        className="doodle-item-enter"
+                        style={{ animationDelay: `${Math.min(index * 30, 300)}ms` }}>
+                        <ChatBubble {...msg} />
+                    </div>
+                ))
             )}
         </div>
     )
@@ -54,7 +66,7 @@ export function GameSidebar() {
     const handleSend = () => {
         const trimmed = message.trim()
         if (!trimmed) return
-        // TODO: wire up to actual chat
+        // Wire up to chat
         setMessage('')
     }
 
@@ -68,8 +80,8 @@ export function GameSidebar() {
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={cn(
-                            'inline-flex min-h-8 flex-1 items-center justify-center rounded-full px-3.5 text-sm font-medium capitalize transition',
-                            'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 active:scale-95',
+                            'inline-flex min-h-8 flex-1 items-center justify-center rounded-full px-3.5 text-sm font-medium capitalize transition-all duration-200 ease-out',
+                            'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 active:scale-[0.98]',
                             activeTab === tab ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:bg-white/60',
                         )}>
                         {tab}
@@ -91,7 +103,7 @@ export function GameSidebar() {
                 <button
                     onClick={handleSend}
                     className={cn(
-                        'inline-flex size-8 shrink-0 items-center justify-center rounded-full transition active:scale-90',
+                        'inline-flex size-8 shrink-0 items-center justify-center rounded-full transition-all duration-150 ease-out active:scale-95',
                         message.trim() ? 'bg-ink text-white' : 'text-slate-400 hover:bg-white/60',
                     )}>
                     <SendHorizontal className="size-4" />

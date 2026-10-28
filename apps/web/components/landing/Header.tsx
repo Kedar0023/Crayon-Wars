@@ -43,7 +43,7 @@ export function Header({ profile, signedIn, onSignIn, onSignOut }: HeaderProps) 
             {menu && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setMenu(false)} />
-                <div role="menu" className="absolute right-0 top-12 z-20 w-44 rounded-2xl bg-[#F4F4F4] p-1.5 shadow-xl">
+                <div role="menu" className="doodle-scale-enter absolute right-0 top-12 z-20 w-44 rounded-2xl bg-[#F4F4F4] p-1.5 shadow-xl">
                   <Link role="menuitem" to="/profile" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-bold hover:bg-black/5"><User className="size-4" />Profile</Link>
                   <button role="menuitem" onClick={() => { setMenu(false); onSignOut(); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-bold hover:bg-black/5"><LogOut className="size-4" />Sign out</button>
                 </div>

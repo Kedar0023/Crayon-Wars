@@ -34,10 +34,10 @@ export interface PlayerInfoCardProps {
     isWinner: boolean
 }
 
-/*
- * Everything is sized in `cqw` (1cqw = 1% of the card's width), so the card
- * scales proportionally with its parent. Design baseline: 406px wide (1cqw ≈ 4.06px).
- */
+// ----------------
+
+// Everything is sized in `cqw` (1cqw = 1% of the card's width).
+// Baseline: 406px wide (1cqw ≈ 4.06px).
 
 const Pill = ({ className, children }: { className: string; children: React.ReactNode }) => (
     <span className={`shrink-0 rounded-[1.6cqw] px-[2cqw] py-[0.4cqw] text-[2.5cqw] font-semibold leading-[3.4cqw] ${className}`}>
@@ -87,13 +87,12 @@ export const PlayerInfoCard = ({
         <div className="size-full" style={{ containerType: 'inline-size' }}>
             <div
                 aria-disabled={disconnected}
-                className={`flex size-full items-center gap-[3cqw] rounded-3xl bg-neutral-100 p-[2cqw] pr-[4cqw] shadow-sm transition ${
+                className={`flex size-full items-center gap-[3cqw] rounded-3xl bg-neutral-100 p-[2cqw] pr-[4cqw] shadow-sm transition-all duration-200 ease-out motion-reduce:transition-none ${
                     disconnected ? 'opacity-60 grayscale' : 'hover:-translate-y-0.5 hover:shadow-md hover:ring-2 hover:ring-sky-500'
                 }`}>
-                {/* Avatar */}
                 <div className="relative aspect-square w-[16cqw] shrink-0">
                     {isNewBest && (
-                        <span className="absolute left-[-2cqw] top-[-2.5cqw] z-10 rotate-[-10deg] animate-[badge-pulse_1.5s_ease-in-out_infinite] whitespace-nowrap rounded-full bg-black px-[2cqw] py-[0.6cqw] text-[2.5cqw] font-semibold leading-none text-white shadow-md">
+                        <span className="doodle-scale-enter absolute left-[-2cqw] top-[-2.5cqw] z-10 rotate-[-10deg] animate-[badge-pulse_1.5s_ease-in-out_infinite] motion-reduce:animate-none whitespace-nowrap rounded-full bg-black px-[2cqw] py-[0.6cqw] text-[2.5cqw] font-semibold leading-none text-white shadow-md">
                             New Best!
                         </span>
                     )}
@@ -108,7 +107,6 @@ export const PlayerInfoCard = ({
                     )}
                 </div>
 
-                {/* Info */}
                 <div className="flex min-w-0 flex-1 flex-col justify-between gap-[1.5cqw] self-stretch py-[1cqw] text-neutral-900">
                     <div className="min-w-0">
                         <div className="flex items-center gap-[1.5cqw]">
@@ -125,23 +123,23 @@ export const PlayerInfoCard = ({
                     </div>
 
                     <div className="flex items-end justify-between gap-[2cqw]">
-                        <div className="flex h-[5.5cqw] min-w-0 items-center whitespace-nowrap text-[3.5cqw] font-medium leading-none text-neutral-500">
+                        <div className="flex h-[5.5cqw] min-w-0 items-center whitespace-nowrap text-[3.5cqw] font-medium leading-none text-neutral-500 transition-colors duration-200 ease-out">
                             {status === 'guess' && (
-                                <span className="flex gap-[1cqw] rounded-full bg-sky-100 px-[2cqw] py-[1.2cqw]">
+                                <span className="doodle-scale-enter flex gap-[1cqw] rounded-full bg-sky-100 px-[2cqw] py-[1.2cqw]">
                                     {[0, 1, 2].map((i) => (
                                         <span
                                             key={i}
-                                            className="size-[2cqw] animate-bounce rounded-full"
+                                            className="size-[2cqw] animate-bounce rounded-full motion-reduce:animate-none"
                                             style={{ animationDelay: `${i * 150}ms`, backgroundColor: avatarColor }}
                                         />
                                     ))}
                                 </span>
                             )}
                             {status === 'guessed' && timeTaken !== undefined && (
-                                <span className="text-neutral-900">{timeTaken.toFixed(1)} s</span>
+                                <span className="doodle-scale-enter text-neutral-900">{timeTaken.toFixed(1)} s</span>
                             )}
                             {STATUS_LABEL[status] && (
-                                <span className={`truncate ${status === 'reconnecting' ? 'animate-pulse' : ''}`}>
+                                <span className={`truncate transition-opacity duration-200 ${status === 'reconnecting' ? 'animate-pulse motion-reduce:animate-none' : ''}`}>
                                     {STATUS_LABEL[status]}
                                 </span>
                             )}
@@ -153,7 +151,6 @@ export const PlayerInfoCard = ({
                     </div>
                 </div>
 
-                {/* Streak */}
                 <div className="relative my-[1.5cqw] flex shrink-0 items-center self-stretch border-l border-dashed border-neutral-400 pl-[4cqw] pr-[3cqw]">
                     <StreakIcon className={`size-[13.5cqw] ${streakStyle}`} strokeWidth={1.5} aria-hidden />
                     <span className="absolute bottom-[-0.5cqw] right-0 text-[5.2cqw] font-semibold leading-none">

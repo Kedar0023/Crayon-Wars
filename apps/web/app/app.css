@@ -6,7 +6,6 @@
     --color-ink: #0b0b0f;
     --color-live: #22c55e;
 
-    /* model accents */
     --color-kimi: #ef4b2f;
     --color-qwen: #7c5cfa;
     --color-glm: #22c78a;
@@ -14,6 +13,17 @@
     --color-deepseek: #2f6df6;
     --color-muse: #f5a31a;
     --color-nemotron: #1fc2dc;
+}
+
+:root {
+    --motion-fast: 140ms;
+    --motion-standard: 240ms;
+    --motion-emphasis: 420ms;
+    --motion-draw: 900ms;
+    --motion-panel: 280ms;
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+    --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
 
 body {
@@ -62,4 +72,69 @@ body {
 @keyframes badge-pulse {
   0%, 100% { transform: rotate(-10deg) scale(1); }
   50% { transform: rotate(-10deg) scale(1.1); }
+}
+
+@keyframes doodle-item-enter {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes doodle-row-enter {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes doodle-bar-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes doodle-scale-enter {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes doodle-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes doodle-panel-enter {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.doodle-item-enter {
+  animation: doodle-item-enter var(--motion-standard) var(--ease-enter) both;
+}
+
+.doodle-row-enter {
+  animation: doodle-row-enter var(--motion-standard) var(--ease-enter) both;
+}
+
+.doodle-bar-enter {
+  animation: doodle-bar-enter var(--motion-panel) var(--ease-enter) both;
+}
+
+.doodle-scale-enter {
+  animation: doodle-scale-enter var(--motion-fast) var(--ease-enter) both;
+}
+
+.doodle-fade-in {
+  animation: doodle-fade-in var(--motion-standard) var(--ease-enter) both;
+}
+
+.doodle-panel-enter {
+  animation: doodle-panel-enter var(--motion-panel) var(--ease-enter) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -8,10 +8,10 @@ function DifficultyPill() {
     const difficulty = useGameStore((s) => s.difficulty)
     const level = DIFFICULTY_LEVEL[difficulty]
     return (
-        <span className="flex items-center gap-1.5 rounded-full bg-white/50 px-2 py-0.5 text-[11px] font-medium text-slate-500">
+        <span className="doodle-scale-enter flex items-center gap-1.5 rounded-full bg-white/50 px-2 py-0.5 text-[11px] font-medium text-slate-500">
             <span aria-hidden className="flex gap-0.5">
                 {[1, 2, 3].map((i) => (
-                    <i key={i} className={cn('size-1 rounded-full', i <= level ? 'bg-ink' : 'bg-slate-400/60')} />
+                    <i key={i} className={cn('size-1 rounded-full transition-colors duration-200', i <= level ? 'bg-ink' : 'bg-slate-400/60')} />
                 ))}
             </span>
             {difficulty}
@@ -19,17 +19,21 @@ function DifficultyPill() {
     )
 }
 
+// ----------------
+
 function StreakBadge() {
     const streak = useGameStore((s) => s.streak)
     return (
         <span
             aria-label={`${streak} win streak`}
-            className="flex items-center gap-1 rounded-full bg-ink px-2 py-0.5 text-[11px] font-bold text-white">
+            className="doodle-scale-enter flex items-center gap-1 rounded-full bg-ink px-2 py-0.5 text-[11px] font-bold text-white">
             <Flame className="size-3 fill-orange-500 text-orange-500" aria-hidden />
             {streak}
         </span>
     )
 }
+
+// ----------------
 
 export function WordHeader() {
     const word = useGameStore((s) => s.word)
@@ -39,7 +43,7 @@ export function WordHeader() {
                 Your word <DifficultyPill /> <StreakBadge />
             </div>
             <div className="flex items-center justify-between gap-3">
-                <h1 className="text-5xl font-black leading-none tracking-tighter">{word}</h1>
+                <h1 key={word} className="doodle-item-enter text-5xl font-black leading-none tracking-tighter">{word}</h1>
                 <Timer />
             </div>
         </div>

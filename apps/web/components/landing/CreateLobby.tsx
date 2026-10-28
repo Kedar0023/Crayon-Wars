@@ -24,7 +24,7 @@ export const DEFAULT_LOBBY_CONFIG: LobbyConfig = {
 const MIN_ROUNDS = 1
 const MAX_ROUNDS = 10
 
-// ---------- small building blocks ----------
+// ----------------
 
 const Field = ({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) => (
     <div className="flex flex-col gap-1.5">
@@ -108,7 +108,7 @@ const StepButton = ({ children, ...props }: React.ButtonHTMLAttributes<HTMLButto
     </button>
 )
 
-// ---------- dialog ----------
+// ----------------
 
 interface Props {
     open: boolean
@@ -138,7 +138,7 @@ export const CreateLobbyDialog = ({ open, onClose, onCreate }: Props) => {
             ref={ref}
             onClose={onClose}
             onClick={(e) => e.target === ref.current && onClose()} // click on backdrop
-            className="m-auto w-[min(92vw,440px)] rounded-[28px] bg-neutral-100 p-0 text-neutral-900 shadow-xl backdrop:bg-black/40">
+            className="doodle-scale-enter m-auto w-[min(92vw,440px)] rounded-[28px] bg-neutral-100 p-0 text-neutral-900 shadow-xl backdrop:bg-black/40 backdrop:doodle-fade-in motion-reduce:transition-none">
             <div className="flex flex-col gap-5 p-6">
                 <h2 className="text-2xl font-extrabold tracking-tight">New lobby</h2>
 

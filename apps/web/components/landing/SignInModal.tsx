@@ -15,8 +15,8 @@ export function SignInModal({ onClose, onDone }: SignInModalProps) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-30 grid place-items-center bg-black/40 p-4" onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-labelledby="si-title" onClick={(event) => event.stopPropagation()} className="w-full max-w-sm rounded-3xl bg-[#F4F4F4] p-6">
+    <div className="doodle-fade-in fixed inset-0 z-30 grid place-items-center bg-black/40 p-4 motion-reduce:transition-none" onClick={onClose}>
+      <div role="dialog" aria-modal="true" aria-labelledby="si-title" onClick={(event) => event.stopPropagation()} className="doodle-scale-enter w-full max-w-sm rounded-3xl bg-[#F4F4F4] p-6 motion-reduce:transition-none">
         <div className="mb-1 flex items-center justify-between">
           <h2 id="si-title" className="text-2xl font-extrabold tracking-[-0.04em]">Sign in</h2>
           <button aria-label="Close" onClick={onClose} className="grid size-8 place-items-center rounded-full hover:bg-black/5"><X className="size-5" /></button>

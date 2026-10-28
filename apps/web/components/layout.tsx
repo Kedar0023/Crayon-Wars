@@ -9,7 +9,7 @@ export function Footer() {
     )
 }
 
-// --------------------
+// ----------------
 
 import { CalendarDays, GitBranch, KeyRound, Trophy, Volume2, VolumeX } from 'lucide-react'
 import { useGameStore } from '@/lib/gameStore'
@@ -60,7 +60,7 @@ import type { ReactNode } from 'react'
 
 export function Shell({ children }: { children: ReactNode }) {
     return (
-        <div className="flex min-h-dvh flex-col bg-sky-bg">
+        <div className="flex min-h-dvh flex-col bg-sky-bg transition-colors duration-500 ease-in-out motion-reduce:transition-none">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />

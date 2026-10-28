@@ -18,4 +18,8 @@ export interface ModelPlayer {
 
 /** perfect-freehand point: [x, y, pressure] */
 export type Point = [number, number, number]
-export type Stroke = Point[]
+export interface Stroke {
+    points: Point[]
+    color: string
+    size: number
+}

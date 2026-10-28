@@ -87,7 +87,7 @@ export const PlayerInfoCard = ({
         <div className="size-full" style={{ containerType: 'inline-size' }}>
             <div
                 aria-disabled={disconnected}
-                className={`flex size-full items-center gap-[3cqw] rounded-3xl bg-neutral-100 p-[2cqw] pr-[4cqw] shadow-sm transition-all duration-200 ease-out motion-reduce:transition-none ${
+                className={`flex size-full items-center gap-[3cqw] rounded-2xl bg-neutral-100 px-[2cqw] pr-[4cqw] shadow-sm transition-all duration-200 ease-out motion-reduce:transition-none ${
                     disconnected ? 'opacity-60 grayscale' : 'hover:-translate-y-0.5 hover:shadow-md hover:ring-2 hover:ring-sky-500'
                 }`}>
                 <div className="relative aspect-square w-[16cqw] shrink-0">
@@ -145,7 +145,7 @@ export const PlayerInfoCard = ({
                             )}
                         </div>
                         <p className="shrink-0 whitespace-nowrap leading-none tabular-nums">
-                            <span className="text-[5.9cqw] font-bold tracking-tight">{score.toLocaleString()}</span>
+                            <span className="text-[5.5cqw] font-semibold text-zinc-700">{score.toLocaleString()}</span>
                             <span className="ml-[1cqw] text-[4cqw] font-semibold text-neutral-500">pt</span>
                         </p>
                     </div>
@@ -153,7 +153,7 @@ export const PlayerInfoCard = ({
 
                 <div className="relative my-[1.5cqw] flex shrink-0 items-center self-stretch border-l border-dashed border-neutral-400 pl-[4cqw] pr-[3cqw]">
                     <StreakIcon className={`size-[13.5cqw] ${streakStyle}`} strokeWidth={1.5} aria-hidden />
-                    <span className="absolute bottom-[-0.5cqw] right-0 text-[5.2cqw] font-semibold leading-none">
+                    <span className="absolute bottom-5 right-0 text-md font-semibold leading-none text-zinc-700">
                         x{winStreak}
                     </span>
                 </div>

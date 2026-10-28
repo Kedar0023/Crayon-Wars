@@ -4,6 +4,7 @@ import { useGameStore } from '@/lib/gameStore'
 
 export function CanvasActions() {
     const playing = useGameStore((s) => s.status === 'playing')
+    const canEditCanvas = useGameStore((s) => s.playerRole === 'drawer')
     const hasStrokes = useGameStore((s) => s.strokes.length > 0)
     const undo = useGameStore((s) => s.undo)
     const clear = useGameStore((s) => s.clear)
@@ -12,8 +13,8 @@ export function CanvasActions() {
     return (
         <div className="doodle-bar-enter flex items-center justify-between">
             <div className="flex items-center gap-1 rounded-full bg-white/40 p-0.5">
-                <PillButton icon={<Undo2 className="size-3.5" />} label="Undo" onClick={undo} disabled={!playing || !hasStrokes} />
-                <PillButton icon={<Trash2 className="size-3.5" />} label="Clear" onClick={clear} disabled={!playing || !hasStrokes} />
+                <PillButton icon={<Undo2 className="size-3.5" />} label="Undo" onClick={undo} disabled={!playing || !canEditCanvas || !hasStrokes} />
+                <PillButton icon={<Trash2 className="size-3.5" />} label="Clear" onClick={clear} disabled={!playing || !canEditCanvas || !hasStrokes} />
             </div>
             <div className="rounded-full bg-white/40 p-0.5">
                 <PillButton icon={<Flag className="size-3.5" />} label="Give up" onClick={giveUp} disabled={!playing} />

@@ -12,7 +12,7 @@ type Tab = (typeof TABS)[number]
 const PlayersTab = () => {
     return (
         <div className="field-scrollbar flex h-full min-h-0 flex-col gap-2 overflow-y-auto">
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-1">
                 {DEMO_PLAYERS.map((player, index) => (
                     <li
                         key={`${player.tag}-${index}`}

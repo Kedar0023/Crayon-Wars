@@ -9,12 +9,14 @@ interface GameState {
     streak: number
     secondsLeft: number
     status: GameStatus
+    playerRole: 'drawer' | 'guesser'
     models: ModelPlayer[]
     avatarCode: AvatarCode
     strokes: Stroke[]
     soundOn: boolean
     tick: () => void
     giveUp: () => void
+    setPlayerRole: (playerRole: GameState['playerRole']) => void
     toggleSound: () => void
     setAvatarCode: (avatarCode: AvatarCode) => void
     addStroke: (stroke: Stroke) => void
@@ -28,6 +30,7 @@ export const useGameStore = create<GameState>((set) => ({
     streak: INITIAL_STREAK,
     secondsLeft: ROUND_SECONDS,
     status: 'playing',
+    playerRole: 'drawer',
     models: MODELS,
     avatarCode: DEFAULT_AVATAR_CODE,
     strokes: [],
@@ -39,6 +42,7 @@ export const useGameStore = create<GameState>((set) => ({
             return secondsLeft <= 0 ? { secondsLeft: 0, status: 'timeout' } : { secondsLeft }
         }),
     giveUp: () => set((s) => (s.status === 'playing' ? { status: 'gave_up' } : s)),
+    setPlayerRole: (playerRole) => set({ playerRole }),
     toggleSound: () => set((s) => ({ soundOn: !s.soundOn })),
     setAvatarCode: (avatarCode) => set({ avatarCode }),
     addStroke: (stroke) => set((s) => ({ strokes: [...s.strokes, stroke] })),

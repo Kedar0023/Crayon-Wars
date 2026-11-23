@@ -8,16 +8,20 @@ interface GameState {
     difficulty: Difficulty
     streak: number
     secondsLeft: number
+    roundDuration: number
     status: GameStatus
     playerRole: 'drawer' | 'guesser'
     models: ModelPlayer[]
     avatarCode: AvatarCode
     strokes: Stroke[]
-    soundOn: boolean
     tick: () => void
     giveUp: () => void
+    winRound: () => void
+    pauseRound: () => void
+    resumeRound: () => void
+    beginCountdown: () => void
+    startRound: (seconds?: number) => void
     setPlayerRole: (playerRole: GameState['playerRole']) => void
-    toggleSound: () => void
     setAvatarCode: (avatarCode: AvatarCode) => void
     addStroke: (stroke: Stroke) => void
     undo: () => void
@@ -29,12 +33,12 @@ export const useGameStore = create<GameState>((set) => ({
     difficulty: INITIAL_DIFFICULTY,
     streak: INITIAL_STREAK,
     secondsLeft: ROUND_SECONDS,
-    status: 'playing',
+    roundDuration: ROUND_SECONDS,
+    status: 'countdown',
     playerRole: 'drawer',
     models: MODELS,
     avatarCode: DEFAULT_AVATAR_CODE,
     strokes: [],
-    soundOn: true,
     tick: () =>
         set((s) => {
             if (s.status !== 'playing') return s
@@ -42,8 +46,12 @@ export const useGameStore = create<GameState>((set) => ({
             return secondsLeft <= 0 ? { secondsLeft: 0, status: 'timeout' } : { secondsLeft }
         }),
     giveUp: () => set((s) => (s.status === 'playing' ? { status: 'gave_up' } : s)),
+    winRound: () => set((s) => (s.status === 'playing' ? { status: 'won' } : s)),
+    pauseRound: () => set((s) => (s.status === 'playing' ? { status: 'paused' } : s)),
+    resumeRound: () => set((s) => (s.status === 'paused' ? { status: 'playing' } : s)),
+    beginCountdown: () => set({ status: 'countdown' }),
+    startRound: (seconds = ROUND_SECONDS) => set({ status: 'playing', secondsLeft: seconds, roundDuration: seconds, strokes: [] }),
     setPlayerRole: (playerRole) => set({ playerRole }),
-    toggleSound: () => set((s) => ({ soundOn: !s.soundOn })),
     setAvatarCode: (avatarCode) => set({ avatarCode }),
     addStroke: (stroke) => set((s) => ({ strokes: [...s.strokes, stroke] })),
     undo: () => set((s) => ({ strokes: s.strokes.slice(0, -1) })),

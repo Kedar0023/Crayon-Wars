@@ -135,7 +135,7 @@ export default function LandingPage() {
               pick a face,<br />pick a fight.
             </h1>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-sm font-bold backdrop-blur">
-              <span className="size-2 rounded-full bg-emerald-500" /> 1,240 drawing now
+              <span className="size-2 rounded-full bg-emerald-500" /> Guests welcome · no account needed
             </span>
           </div>
 
@@ -161,7 +161,7 @@ export default function LandingPage() {
           <Link to="/how-to-play" className="hover:text-black">How to play</Link>
           <Link to="/privacy" className="hover:text-black">Privacy</Link>
           <Link to="/terms" className="hover:text-black">Terms</Link>
-          <a href="https://discord.gg/your-invite" target="_blank" rel="noreferrer" className="hover:text-black">Discord</a>
+          <Link to="/leaderboard" className="hover:text-black">Leaderboard</Link>
         </footer>
       </div>
 

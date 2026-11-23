@@ -36,7 +36,9 @@ function toPoint(event: React.PointerEvent<SVGSVGElement>): Point {
 export function CanvasCard() {
     const strokes = useGameStore((state) => state.strokes)
     const addStroke = useGameStore((state) => state.addStroke)
-    const roundIsPlaying = useGameStore((state) => state.status === 'playing')
+    const roundStatus = useGameStore((state) => state.status)
+    const roundIsPlaying = roundStatus === 'playing'
+    const roundHasEnded = roundStatus === 'won' || roundStatus === 'gave_up' || roundStatus === 'timeout'
     const isDrawer = useGameStore((state) => state.playerRole === 'drawer')
     const canDraw = roundIsPlaying && isDrawer
     const [activeColor, setActiveColor] = useState<(typeof INK_COLORS)[number]>(INK_COLORS[0])
@@ -143,7 +145,7 @@ export function CanvasCard() {
                     />
                 ))}
             </div>
-            {!roundIsPlaying && (
+            {roundHasEnded && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm">
                     Round ended
                 </div>

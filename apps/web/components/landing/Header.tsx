@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { useSoundEnabled } from "react-sounds";
 import { ChevronDown, LogOut, Pencil, Trophy, User, Volume2, VolumeX } from "lucide-react";
 import type { Profile } from "./types";
 import { Avatar } from "./primitives";
@@ -12,7 +13,7 @@ type HeaderProps = {
 };
 
 export function Header({ profile, signedIn, onSignIn, onSignOut }: HeaderProps) {
-  const [muted, setMuted] = useState(false);
+  const [soundOn, setSoundOn] = useSoundEnabled();
   const [menu, setMenu] = useState(false);
 
   return (
@@ -26,8 +27,11 @@ export function Header({ profile, signedIn, onSignIn, onSignOut }: HeaderProps) 
         <Link to="/leaderboard" className="inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-sm font-bold hover:bg-white">
           <Trophy className="size-4" /> <span className="hidden sm:inline">Leaderboard</span>
         </Link>
-        <button aria-label={muted ? "Unmute" : "Mute"} onClick={() => setMuted(!muted)} className="grid size-9 place-items-center rounded-full hover:bg-white">
-          {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+        <Link to="/profile" aria-label="Profile" className="grid size-9 place-items-center rounded-full hover:bg-white">
+          <User className="size-4" />
+        </Link>
+        <button aria-label={soundOn ? "Mute" : "Unmute"} onClick={() => setSoundOn(!soundOn)} className="grid size-9 place-items-center rounded-full hover:bg-white">
+          {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
         </button>
 
         {signedIn ? (

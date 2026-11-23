@@ -1,4 +1,3 @@
-import { ROUND_SECONDS } from '../../lib/game'
 import { useGameStore } from '@/lib/gameStore'
 
 const RADIUS = 8
@@ -6,7 +5,8 @@ const CIRC = 2 * Math.PI * RADIUS
 
 export function Timer() {
     const secondsLeft = useGameStore((s) => s.secondsLeft)
-    const progress = secondsLeft / ROUND_SECONDS
+    const roundDuration = useGameStore((s) => s.roundDuration)
+    const progress = secondsLeft / roundDuration
 
     return (
         <div

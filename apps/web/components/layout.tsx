@@ -11,8 +11,9 @@ export function Footer() {
 
 // ----------------
 
-import { CalendarDays, GitBranch, KeyRound, Trophy, Volume2, VolumeX } from 'lucide-react'
-import { useGameStore } from '@/lib/gameStore'
+import { BookOpen, GitBranch, KeyRound, Trophy, UserRound, Volume2, VolumeX } from 'lucide-react'
+import { useSoundEnabled } from 'react-sounds'
+import { Link } from 'react-router'
 import { PillButton } from '@/components/ui/PillButton'
 
 function Logo() {
@@ -28,21 +29,27 @@ function Logo() {
 }
 
 export function Header() {
-    const soundOn = useGameStore((s) => s.soundOn)
-    const toggleSound = useGameStore((s) => s.toggleSound)
+    const [soundOn, setSoundOn] = useSoundEnabled()
 
     return (
         <header className="flex items-center justify-between px-4 py-4 pt-[max(1rem,env(safe-area-inset-top))] md:px-8 lg:px-32">
             <Logo />
             <div className="flex items-center gap-2">
                 <nav className="flex items-center rounded-full bg-white/40 p-0.5 backdrop-blur" aria-label="Main">
-                    <PillButton icon={<CalendarDays className="size-4" />} label="Daily" collapseLabel />
-                    <PillButton icon={<Trophy className="size-4" />} label="Leaderboard" collapseLabel />
+                    <Link to="/leaderboard" aria-label="Leaderboard" className="inline-flex size-9 items-center justify-center rounded-full text-sm font-bold transition hover:bg-white/60 sm:w-auto sm:gap-1.5 sm:px-3">
+                        <Trophy className="size-4" /><span className="hidden sm:inline">Leaderboard</span>
+                    </Link>
+                    <Link to="/how-to-play" aria-label="How to play" className="inline-flex size-9 items-center justify-center rounded-full text-sm font-bold transition hover:bg-white/60 sm:w-auto sm:gap-1.5 sm:px-3">
+                        <BookOpen className="size-4" /><span className="hidden sm:inline">How to play</span>
+                    </Link>
+                    <Link to="/profile" aria-label="Profile" className="inline-flex size-9 items-center justify-center rounded-full text-sm font-bold transition hover:bg-white/60 sm:w-auto sm:gap-1.5 sm:px-3">
+                        <UserRound className="size-4" /><span className="hidden sm:inline">Profile</span>
+                    </Link>
                     <PillButton
                         icon={soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
                         label={soundOn ? 'Mute' : 'Unmute'}
                         className="[&>span]:hidden"
-                        onClick={toggleSound}
+                        onClick={() => setSoundOn(!soundOn)}
                     />
                     <PillButton icon={<KeyRound className="size-4" />} label="API key" className="[&>span]:hidden" />
                 </nav>

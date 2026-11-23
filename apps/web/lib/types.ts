@@ -1,5 +1,5 @@
 export type Difficulty = 'easy' | 'medium' | 'hard'
-export type GameStatus = 'playing' | 'won' | 'gave_up' | 'timeout'
+export type GameStatus = 'countdown' | 'playing' | 'paused' | 'won' | 'gave_up' | 'timeout'
 export type AvatarShape = 'circle' | 'squircle' | 'triangle' | 'pill' | 'drop' | 'blob' | 'star'
 export type ModelAccent = 'kimi' | 'qwen' | 'glm' | 'minimax' | 'deepseek' | 'muse' | 'nemotron'
 
